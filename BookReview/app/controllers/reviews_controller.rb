@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
 	before_action :find_book
 
 	def new
-		@review = Review.new
+		#@review = Review.new
+		@review=@book.build_review
 	end
 
 	def create
@@ -25,4 +26,5 @@ class ReviewsController < ApplicationController
 		def find_book
 			@book = Book.find(params[:book_id])
 		end
+
 end
