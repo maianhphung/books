@@ -1,39 +1,78 @@
+
 <div class = "row">
+	<div style ="margin-top 100px;"></div>
 
-	<div class= "col-md-4">
-		<%= image_tag @book.book_img.try(:url), class: "book_show" %>
-	</div>	
-
-	<div class="col-md-8">
-		<h2><%= @book.title %></h2>
-		<h3><%= @book.author %></h3>
-		<p><%= @book.description %></p>	
+	<div class ="col-md-4">
+		<div>
+			<%= image_tag @book.book_img.try(:url), class: "book_show" %>
+		</div>
+	</div>
+	
+	<div class= "col-md-12">			
+		<div class="book-info">
+			<h1 class="book-title"><%= @book.title %></h2>
+			<h2 class="book-author"><span>From</span> <%= @book.author %></h3>
+			<p class="book-desc"><%= @book.description %></p>	
+		</div>
 	</div>
 
 </div>
 
 <div class="row">
+
 	<div class="col-md-4">
 
-		<!--where to review/ratings will go-->
-		
-
-		<div>
-			<%= link_to "Add Review", new_book_review_path(@book) %>
+		<div class="reviews">
+			<h1>Review</h1>
+			<%= render @book.review unless @book.review.nil? %>
+			<% if user_signed_in? %>
+				<% if @book.user_id == current_user.id %>
+					<div>
+						<%= link_to "Add Review", new_book_review_path(@book), class:"btn btn-custom" %>
+					</div>
+				<% end %>
+			<% end %>
 		</div>
 
-		<%= render @book.review unless @book.review.nil? %>
-
- 
+		<div class="links btn-group">
+			<% if user_signed_in? %>
+				<% if @book.user_id == current_user.id %>
+					<%= link_to "Edit_Book", edit_book_path(@book)%>
+					<%= link_to "Delete_Book", book_path(@book), method: :delete , data: { confirm: "Sure to Delete Book?" }%>
+					<%end%>
+				<% end %>
+		</div>
+		<div> <%= link_to "Back", root_path, class:"btn btn-custom" %></div>
 	</div>
+
+	<div class="col-md-8" >
+		<div class="book-posts">
+				<h1 style="float:center">Comments </h1>
+				<%= render @book.posts unless @book.posts.nil? %>
+		</div>
+
+		<div style ="margin-bottom:30px;"></div>
+		
+		<div>
+			<% if user_signed_in? %>
+					<%= link_to "Add Comment", new_book_post_path(@book), class:"btn btn-custom" %>
+				<% end %> 
+
+		</div>
+		<div style ="margin-bottom:700px;"></div>
+
+	</div>
+
 </div>
 
-<%= link_to "Back", root_path %>
 
-<% if user_signed_in? %>
-	<% if @book.user_id == current_user.id %>
-		
-		<%= link_to "Edit", edit_book_path(@book)%>
-		<%= link_to "Delete", book_path(@book), method: :delete , data: { confirm: "Sure?" } %>
-		<%end%>
-<% end %>
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function(){
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+

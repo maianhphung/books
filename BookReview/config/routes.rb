@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+ 
+
+  devise_for :users 
+  
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.htmls
 	resources :books do
 		resources :reviews
+		resources :posts
 	end
-	root "books#index"
+
+	resources :users do
+		resources :profiles
+		resources :books
+	end	
+
+
+
+	root "users#show"
 end

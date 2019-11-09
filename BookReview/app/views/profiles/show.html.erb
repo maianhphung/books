@@ -1,0 +1,20 @@
+
+
+<body>
+	<div style ="margin-top:100px;"></div>
+		<div class= "content">
+			<h1 style="text-align:center;font-family:TimesNewRoman;font-size: 40px;"><%= current_user.profile.first_name + "       "  + current_user.profile.last_name %></h1>
+			<p style ="text-align:center;font-size:16px"><%= current_user.profile.city + ", "+ current_user.profile.state %></p>
+			<a class ="center"> <%= image_tag current_user.profile.image.url, class: "book" %></a>
+			<p style ="text-align:center;"><%= link_to "Edit", edit_user_profile_path(user_id: current_user.id, id: current_user.profile.id), class:"btn btn-custom"%></p>
+		</div>
+		<div style ="margin-bottom:40px;"></div>
+
+		<div style="margin-left:200px""margin-right:300px">
+			<p style="text-align:left;font-size: 16px;"><%= current_user.profile.about %> </p>
+		</div>
+	
+	<div style ="margin-bottom:200px;"></div>
+
+ </body>
+					

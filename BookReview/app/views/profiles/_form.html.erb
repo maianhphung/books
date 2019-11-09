@@ -1,0 +1,11 @@
+
+<%= simple_form_for ([@user, @user.build_profile]), :html => { :multipart => true } do |f| %>
+
+	<%= f.file_field :image %>
+	<%= f.input :first_name, label: "First Name " %>
+	<%= f.input :last_name, label: "Last Name" %>
+	<%= f.input :about, label:  "Favorite Quotes/Self Description" %>
+	<%= f.input :city, label: "City" %>
+	<%= f.input :state, label: "State" %>
+	<%= f.button :submit, :class =>'btn-custom2' %>
+<%end%>

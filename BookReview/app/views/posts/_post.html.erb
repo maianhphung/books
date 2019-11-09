@@ -1,0 +1,15 @@
+
+	<div class="posts">
+
+		<p class="post-comment"><%= post.comment %></p>
+		<p style ="float:right"><%=post.user.user_name %></p>
+		<p style ="white-space:pre"> </p>
+		<p style="float:right"> <%=post.user.created_at.strftime("%m-%d-%Y") %> </p>
+		<% if user_signed_in? %>
+			<% if post.user_id == current_user.id %>
+
+				<%= link_to "Edit", edit_book_post_path(post.book, post) %>
+				<%= link_to "Delete", book_post_path(post.book, post), method: :delete, data: { confirm: "Are you Sure" } %>
+			<% end %>
+		<% end %>
+	</div>

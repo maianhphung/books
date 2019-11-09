@@ -1,0 +1,20 @@
+<ul>
+	<% Category.all.each do |category| %>
+	  <li class="<%= 'active' if params[:category]== category.name %>">
+	    <%= link_to category.name, user_books_path(@user, category: category.name), class:"link" %>
+	  </li>
+	<% end %>
+</ul>
+
+<div class="row-5">
+	<% @user.each do |user| %>
+		<div class="col-md-10">
+			<% if user.profile!=nil %>
+				<%= link_to image_tag user.profile.image.url, class: "img-circular" %>
+				<p><%= link_to user.profile.full_name, books_path(user_id: user.id)%></p>
+			<% else %>
+				link_to new_user_profile_path %> 
+			<%end%>	
+		</div>
+	<% end %>
+</div>
