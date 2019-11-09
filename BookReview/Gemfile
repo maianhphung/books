@@ -7,7 +7,7 @@ end
 
 gem 'pry', '~> 0.11.3'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'simple_form', '~> 3.5'
+gem 'simple_form', '~> 5.0'
 gem 'jquery-rails'
 gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
